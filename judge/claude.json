@@ -1,0 +1,61 @@
+{
+  "judge": "claude",
+  "task": "Linear interpolation implementations",
+  "dimensions": ["completeness", "correctness", "succinctness"],
+  "scale": "1-5",
+  "implementations": {
+    "mai": {
+      "path": "mai/interpolate.py",
+      "data_points": 3,
+      "out_of_range_policy": "raises ValueError",
+      "lookup": "linear scan",
+      "guards": ["range"],
+      "demo_queries": 1,
+      "scores": {
+        "completeness": 2,
+        "correctness": 4,
+        "succinctness": 5
+      },
+      "total": 11,
+      "notes": "Most succinct (38 lines) but minimal: single in-range demo, no empty/<2-point guard, edge cases not demonstrated despite having the error path. Stray double blank line."
+    },
+    "codex": {
+      "path": "codex/linear_interpolation.py",
+      "data_points": 5,
+      "out_of_range_policy": "raises ValueError",
+      "lookup": "linear scan",
+      "guards": ["range", "min 2 points"],
+      "demo_queries": 4,
+      "scores": {
+        "completeness": 4,
+        "correctness": 5,
+        "succinctness": 4
+      },
+      "total": 13,
+      "notes": "Best balance. Explicit <2-point guard, handles exact-endpoint matches, helpful range-error messages, lean and well-structured (59 lines)."
+    },
+    "claude": {
+      "path": "claude/linear_interpolation.py",
+      "data_points": 11,
+      "out_of_range_policy": "clamps to endpoint",
+      "lookup": "bisect (O(log n))",
+      "guards": ["range"],
+      "demo_queries": 8,
+      "scores": {
+        "completeness": 5,
+        "correctness": 4,
+        "succinctness": 2
+      },
+      "total": 11,
+      "notes": "Most complete and educational: docstrings, largest dataset, formatted table, demonstrates out-of-range and exact-match cases. But least succinct (~95 lines), over-engineered for a demo, lacks empty-list guard, and silently clamps out-of-range (debatable semantics for interpolation)."
+    }
+  },
+  "category_winners": {
+    "completeness": "claude",
+    "correctness": "codex",
+    "succinctness": "mai"
+  },
+  "overall_winner": "codex",
+  "overall_rationale": "codex strikes the best balance: correct with the most robust guards, complete enough to be genuinely demonstrative, and still concise. claude is the most educational but least succinct with questionable silent-clamp semantics. mai is the tightest but too thin to fully demonstrate the concept.",
+  "bias_disclosure": "One implementation (claude) was the judge's own prior output; it was scored on the same criteria and did not win overall."
+}

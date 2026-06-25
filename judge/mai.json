@@ -1,0 +1,14 @@
+{
+  "winner_by_aspect": {
+    "completeness": "claude/linear_interpolation.py",
+    "correctness": "codex/linear_interpolation.py",
+    "succinctness": "mai/interpolate.py"
+  },
+  "summary": "Claude is the most complete and well-documented, Codex is the most correct core implementation, and Mai is the most succinct demo script.",
+  "notes": [
+    "Verified by running all three implementations in the working directory.",
+    "Claude provides the richest explanation and demo output.",
+    "Codex has the cleanest interpolation logic and explicit validation.",
+    "Mai is the shortest script, but the least complete as a full demo."
+  ]
+}

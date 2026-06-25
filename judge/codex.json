@@ -1,0 +1,33 @@
+{
+  "judge": "codex",
+  "votes": {
+    "completeness": "claude",
+    "correctness": "codex",
+    "succinctness": "mai",
+    "overall": "codex"
+  },
+  "summary": "Codex is the overall winner, narrowly. It provides a clean standalone demo, loads CSV data, sorts points, validates input size and range, and correctly interpolates multiple target values.",
+  "implementations": {
+    "codex": {
+      "completeness": "Good standalone demonstration with CSV loading and multiple in-range targets.",
+      "correctness": "Best correctness: uses the standard interpolation formula, sorts input, checks range, and rejects invalid datasets.",
+      "succinctness": "Moderately concise, with some useful validation overhead.",
+      "notes": "Overall winner."
+    },
+    "mai": {
+      "completeness": "Basic working demo, but only interpolates one value and uses very minimal sample data.",
+      "correctness": "Correct for normal in-range input, but lacks an explicit guard for empty or one-point datasets.",
+      "succinctness": "Most succinct implementation.",
+      "notes": "Best on brevity."
+    },
+    "claude": {
+      "completeness": "Most complete demonstration, with documentation, formatted output, several queries, and out-of-range examples.",
+      "correctness": "Core interpolation is correct, but clamping out-of-range values is less appropriate for strict linear interpolation unless requested.",
+      "succinctness": "Least succinct due to explanatory docstring, formatting, and expanded demo output.",
+      "notes": "Best demonstration completeness."
+    }
+  },
+  "verification": {
+    "scripts_ran_successfully": true
+  }
+}
